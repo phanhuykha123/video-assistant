@@ -9,6 +9,8 @@ const resolvers = require('./resolvers/resolvers');
 const cors = require('cors');
 
 const { port } = process.env.PORT || 8000;
+const portne = process.env.PORT;
+console.log('dayla port',port,portne);
 
 // Connect database
 db.connect();
