@@ -8,7 +8,7 @@ const typeDefs = require('./types/typeDefs');
 const resolvers = require('./resolvers/resolvers');
 const cors = require('cors');
 
-const { port } = process.env.PORT;
+const { port } = process.env.PORT || 8000;
 
 // Connect database
 db.connect();
