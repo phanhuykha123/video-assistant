@@ -1,16 +1,24 @@
 <template>
 	<div class="chat-box">
-		<span class="close-icon" @click="handleCloseChatBox">X</span>
+		<!-- <span class="close-icon" @click="handleCloseChatBox">X</span> -->
 		<div class="chat-box__wrapper">
-			<video-player @showTitle="showTitle" />
+			<video-player @showTitle="showTitle" :videoId="videoId" />
+
 			<div class="chat-box__content">
 				<div class="chat-bot__titles" :class="{ animated: isAnimated }">
 					<p class="chat-bot__title--item">Welcome to our website</p>
 					<p class="chat-bot__title--item">What are you planning to do</p>
 				</div>
 			</div>
+
 			<div class="buttons-group scroll-style">
-				<button class="button-item" round v-for="(button, index) in 5" :key="button">
+				<button
+					class="button-item"
+					round
+					v-for="(button, index) in 5"
+					:key="button"
+					@click="handleNextNode"
+				>
 					<span class="button-item__badge">{{
 						String.fromCharCode(97 + index).toUpperCase()
 					}}</span>
@@ -32,6 +40,7 @@
 	import VideoPlayer from './VideoPlayer.vue';
 	export default {
 		components: { Loading, VideoPlayer },
+		props: ['videoId'],
 		name: 'ChatBox',
 		data() {
 			return {
@@ -45,6 +54,9 @@
 			},
 			showTitle() {
 				this.isAnimated = true;
+			},
+			handleNextNode() {
+				this.$emit('onNextNode');
 			},
 		},
 	};
