@@ -29,6 +29,7 @@ class NodeController {
       contentArray.content.forEach(node => {
         if (node.name === nextNode) {
           return res.status(200).json({
+            status: 'success',
             data: node,
           });
         }

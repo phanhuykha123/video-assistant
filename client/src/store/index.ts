@@ -1,45 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import chat from './chat';
 // import request from '@/utils/request';
-import { getNode } from '@/api/chat';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-	state: {
-		node: { Object },
-		timeout: 1000,
-		autoplay: false,
-	},
-	mutations: {
-		SET_NODE(state, payload) {
-			state.node = payload;
-		},
-		SET_TIME_OUT(state, payload) {
-			state.timeout = payload;
-		},
-		SET_AUTO_PLAY(state, payload) {
-			state.autoplay = payload;
-		},
-	},
-	actions: {
-		async getNode({ commit }, payload) {
-			const res = await getNode(payload);
-			if (res.status === 200) {
-				commit('SET_NODE', res.data);
-				commit('SET_TIME_OUT', 1000);
-			}
-		},
-	},
-	getters: {
-		node(state) {
-			return state.node;
-		},
-		timeout(state) {
-			return state.timeout;
-		},
-		autoplay(state) {
-			return state.autoplay;
-		},
-	},
-	modules: {},
+  modules: {
+    chat,
+  },
 });
