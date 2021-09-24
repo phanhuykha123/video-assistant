@@ -1,36 +1,49 @@
 <template>
-	<video
-		ref="videoPlayer"
-		id="my-video"
-		class="video-js vjs-theme-forest vjs-show-big-play-button-on-pause vjs-fill bg-video"
-		controls
-		data-setup="{}"
-	>
-		<source src="@/assets/video.mp4" type="video/mp4" />
-	</video>
+  <video
+    ref="videoPlayer"
+    :id="`${videoId}`"
+    class="video-js vjs-theme-forest vjs-show-big-play-button-on-pause vjs-fill bg-video"
+    :class="{ animated: isAnimated }"
+    controls
+    data-setup="{}"
+    :videoId="videoId"
+    :autoplay="autoplay"
+  >
+    <!-- <source src="@/assets/video.mp4" type="video/mp4" /> -->
+  </video>
 </template>
 
 <script>
-	import videojs from 'video.js';
-	export default {
-		data() {
-			return {
-				player: null,
-				isAnimated: false,
-			};
-		},
-		mounted() {
-			this.player = videojs('my-video', {
-				fill: true,
-			});
-			this.player.on('play', () => {
-				this.$emit('showTitle');
-			});
-		},
-		beforeDestroy() {
-			if (this.player) {
-				this.player.dispose();
-			}
-		},
-	};
+import videojs from 'video.js';
+import { mapGetters } from 'vuex';
+export default {
+  props: ['videoId', 'videoURL', 'isAnimated'],
+  data() {
+    return {
+      player: null,
+    };
+  },
+  computed: {
+    ...mapGetters({
+      autoplay: 'chat/autoplay',
+      timeout: 'chat/timeout',
+    }),
+  },
+  mounted() {
+    this.player = videojs(this.videoId, {
+      fill: true,
+    });
+    this.player.src({ type: 'video/mp4', src: this.videoURL });
+    this.player.on('play', () => {
+      this.$emit('showTitle');
+    });
+  },
+  beforeDestroy() {
+    if (this.player) {
+      setTimeout(() => {
+        this.player.dispose();
+      }, this.timeout);
+    }
+  },
+};
 </script>

@@ -1,133 +1,142 @@
 .chat-box {
-	position: relative;
-	width: 80%;
-	border-radius: 20px;
-	box-shadow: 0 0 5px rgb(160, 160, 160);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  right: 0;
 }
 
 .close-icon {
-	position: absolute;
-	right: -10px;
-	top: -10px;
-	border-radius: 100px;
-	width: 30px;
-	height: 30px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: #000;
-	color: #fff;
-	z-index: 999;
-	cursor: pointer;
+  position: absolute;
+  right: -10px;
+  top: -10px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  color: #fff;
+  z-index: 999;
+  cursor: pointer;
 }
 .chat-box__wrapper {
-	height: 100%;
-	background: #000;
-	border-radius: 20px;
+  height: 100%;
+  background: #000;
+  border-radius: 20px;
 }
 
 .bg-video {
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	opacity: 0.8;
-	border-radius: 20px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  transition: all 0.5s ease-in-out;
+}
+
+.bg-video.animated {
+  opacity: 0.7;
 }
 
 .chat-box__content {
-	position: absolute;
-	top: 0;
-	left: 0;
-	padding: 15px;
-	width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 15px;
+  width: 100%;
 }
 
 .chat-bot__titles {
-	color: #fff;
-	text-shadow: 0 0 5px grey;
-	padding-top: 20px;
-	opacity: 0;
+  color: #fff;
+  text-shadow: 0 0 5px grey;
+  padding-top: 20px;
+  opacity: 0;
 }
 .chat-bot__titles.animated {
-	animation: fadeIn ease-in 0.5s forwards;
-	animation-delay: 0.5s;
+  animation: fadeIn ease-in 0.5s forwards;
+  animation-delay: 0.5s;
 }
 .chat-bot__title--item {
-	font-size: 18px;
-	font-weight: bold;
-	margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .loading {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: #fff;
-	border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  border-radius: 20px;
 
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .buttons-group {
-	max-height: 35%;
-	position: absolute;
-	width: 100%;
-	bottom: 0;
-	left: 0;
-	overflow: auto;
-	padding: 10px;
+  max-height: 35%;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  padding: 10px;
 }
 
 .button-item {
-	display: block;
-	width: 80%;
-	margin: 0 auto;
-	margin-bottom: 10px;
-	padding: 15px;
-	color: #fff;
-	text-align: left;
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  padding: 15px;
+  color: #fff;
+  text-align: left;
 
-	border: 0;
-	border: 1px solid transparent;
-	background-color: rgba(0, 0, 0, 0.479);
-	border-radius: 50px;
+  border: 0;
+  border: 1px solid transparent;
+  background-color: rgba(0, 0, 0, 0.479);
+  border-radius: 50px;
 
-	cursor: pointer;
-	transition: all 0.2s;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 .button-item:hover {
-	border: 1px solid blue;
-	color: #fff;
-	background-color: rgba(0, 0, 0, 0.479);
+  border: 1px solid blue;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.479);
 }
 
 .button-item__badge {
-	padding: 10px;
-	clip-path: circle();
-	border-radius: 500px;
-	background-color: #096dd9;
-	margin-right: 10px;
+  padding: 10px;
+  clip-path: circle();
+  border-radius: 500px;
+  background-color: #096dd9;
+  margin-right: 10px;
 }
 
 @keyframes fadeIn {
-	from {
-		opacity: 0;
-		transform: translateY(10px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Overdrive Player CSS */
 
 .vjs-control-bar {
-	display: none !important;
+  display: none !important;
 }
 
 .video-js .vjs-tech {
-	object-fit: cover !important;
-	border-radius: 20px;
+  object-fit: cover !important;
+  border-radius: 20px;
 }
