@@ -12,5 +12,6 @@ const ButtonSchema = new mongoose.Schema({
         type:String,
     },
 });
-// const Button = mongoose.model('button',ButtonSchema);
+
+const Button = mongoose.model('button',ButtonSchema);
 module.exports = ButtonSchema;

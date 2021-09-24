@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-const Node = require('./Node');
-
+const Node = require('../models/Node');
 const ContentSchema = new mongoose.Schema({
     content:[Node],
 });
