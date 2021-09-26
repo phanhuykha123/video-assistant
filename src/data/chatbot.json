@@ -1,0 +1,442 @@
+{
+  "content": [
+    {
+      "name": "conversation_start",
+      "text": "Vui lòng chọn ngôn ngữ để bắt đầu?",
+      "buttons": [
+        {
+          "text": "Tiếng Việt",
+          "event": "capture",
+          "data": "{'key': 'language_select','lang':'vi','next':'conversation_welcome'}"
+        },
+        {
+          "text": "Tiếng Anh",
+          "event": "capture",
+          "data": "{'key': 'language_select','lang':'en','next':'conversation_welcome'}"
+        }
+      ],
+      "regex": "^(language)$"
+    },
+    {
+      "name": "conversation_welcome",
+      "text": "Welcome to my store ABC",
+      "buttons": [
+        {
+          "text": "Quit Shopping",
+          "event": "goto",
+          "data": "conversation_end"
+        },
+        { "text": "Show List items", "event": "goto", "data": "list_items" }
+      ],
+      "regex": "^(hi*(i)$|hello*(o)$)$",
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "en",
+          "operator": "="
+        }
+      ]
+    },
+    {
+      "name": "conversation_welcome:vi",
+      "text": "Chào mừng bạn đến với cửa hàng ABC",
+      "buttons": [
+        {
+          "text": "Kết thúc mua sắm",
+          "event": "goto",
+          "data": "conversation_end"
+        },
+        { "text": "Xem Danh Sách Sản Phẩm", "event": "goto", "data": "list_items" }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        }
+      ],
+      "regex": "(xin)?cha(o*)$"
+    },
+    {
+      "name": "list_items",
+      "text": "List Items",
+      "buttons": [
+        {
+          "text": "Desk",
+          "thumb": "https://www.ikea.com/cz/en/images/products/ekedalen-extendable-table-dark-brown__0736963_pe740827_s5.jpg",
+          "event": "capture",
+          "data": "{'key':'item_select','value':'1','next':'show_item_1'}"
+        },
+        {
+          "text": "Chair",
+          "thumb": "https://www.ikea.com/mx/en/images/products/stefan-chair-brown-black__0727320_pe735593_s5.jpg?f=s",
+          "event": "capture",
+          "data": "{'key':'item_select','value':'2','next':'show_item_2'}"
+        },
+        {
+          "text": "Bed",
+          "thumb": "https://www.ikea.com/mx/en/images/products/malm-bed-frame-high-black-brown-luroey__0638608_pe699032_s5.jpg",
+          "event": "capture",
+          "data": "{'key':'item_select','value':'3','next':'show_item_3'}"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "en",
+          "operator": "="
+        }
+      ],
+      "regex": "^(list|category)"
+    },
+    {
+      "name": "list_items:vi",
+      "text": "Danh sách sản phẩm",
+      "buttons": [
+        {
+          "text": "Bàn",
+          "thumb": "https://www.ikea.com/cz/en/images/products/ekedalen-extendable-table-dark-brown__0736963_pe740827_s5.jpg",
+          "event": "capture",
+          "data": "{'key':'item_select','value':'1','next':'show_item_1'}"
+        },
+        {
+          "text": "Ghế",
+          "thumb": "https://www.ikea.com/mx/en/images/products/stefan-chair-brown-black__0727320_pe735593_s5.jpg?f=s",
+          "event": "capture",
+          "data": "{'key':'item_select','value':'2','next':'show_item_2'}"
+        },
+        {
+          "text": "Nệm",
+          "thumb": "https://www.ikea.com/mx/en/images/products/malm-bed-frame-high-black-brown-luroey__0638608_pe699032_s5.jpg",
+          "event": "capture",
+          "data": "{'key':'item_select','value':'3','next':'show_item_3'}"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        }
+      ],
+      "regex": "san pham|danh sach"
+    },
+    {
+      "name": "show_item_1",
+      "text": "Desk, a table, frame, or case with a sloping or horizontal top particularly designed to aid writing or reading",
+      "thumb": "https://www.ikea.com/cz/en/images/products/ekedalen-extendable-table-dark-brown__0736963_pe740827_s5.jpg",
+      "price": 999,
+      "sub_text": "Product detail",
+      "buttons": [
+        {
+          "text": "Buy Item",
+          "event": "goto",
+          "data": "buy_item"
+        },
+        {
+          "text": "Show another items",
+          "event": "goto",
+          "data": "list_items"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "en",
+          "operator": "="
+        },
+        {
+          "property": "item_select",
+          "value": "1",
+          "operator": "="
+        }
+      ],
+      "regex": "(^desk|1$)"
+    },
+    {
+      "name": "show_item_1:vi",
+      "text": "Cái bàn làm việc cực đã",
+      "thumb": "https://www.ikea.com/cz/en/images/products/ekedalen-extendable-table-dark-brown__0736963_pe740827_s5.jpg",
+      "price": 999,
+      "sub_text": "Chi tiết sản phẩm",
+      "buttons": [
+        {
+          "text": "Mua sản phẩm",
+          "event": "goto",
+          "data": "buy_item"
+        },
+        {
+          "text": "Xem danh sách sản phẩm",
+          "event": "goto",
+          "data": "list_items"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        },
+        {
+          "property": "item_select",
+          "value": "1",
+          "operator": "="
+        }
+      ],
+      "regex": "(ban|1$)"
+    },
+    {
+      "name": "show_item_2",
+      "text": "A chair is a piece of furniture. It is used for sitting on and it can also be used for standing on, if you can't reach something",
+      "thumb": "https://www.ikea.com/mx/en/images/products/stefan-chair-brown-black__0727320_pe735593_s5.jpg?f=s",
+      "price": 10000,
+      "sub_text": "Product detail",
+      "buttons": [
+        {
+          "text": "Buy Item",
+          "event": "goto",
+          "data": "buy_item"
+        },
+        {
+          "text": "Show another items",
+          "event": "goto",
+          "data": "list_items"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "en",
+          "operator": "="
+        },
+        {
+          "property": "item_select",
+          "value": "2",
+          "operator": "="
+        }
+      ],
+      "regex": "(^chair|2$)"
+    },
+    {
+      "name": "show_item_2:vi",
+      "text": "Cái ghế ngồi siêu êm",
+      "thumb": "https://www.ikea.com/mx/en/images/products/stefan-chair-brown-black__0727320_pe735593_s5.jpg?f=s",
+      "price": 10000,
+      "sub_text": "Chi tiết sản phẩm",
+      "buttons": [
+        {
+          "text": "Mua sản phẩm",
+          "event": "goto",
+          "data": "buy_item"
+        },
+        {
+          "text": "Xem danh sách sản phẩm",
+          "event": "goto",
+          "data": "list_items"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        },
+        {
+          "property": "item_select",
+          "value": "2",
+          "operator": "="
+        }
+      ],
+      "regex": "(ghe|2$)"
+    },
+    {
+      "name": "show_item_3",
+      "text": "A bed is a piece of furniture which is used as a place to sleep and relax",
+      "thumb": "https://www.ikea.com/mx/en/images/products/malm-bed-frame-high-black-brown-luroey__0638608_pe699032_s5.jpg",
+      "price": 300,
+      "sub_text": "Detail product",
+      "buttons": [
+        {
+          "text": "Buy Item",
+          "event": "goto",
+          "data": "buy_item"
+        },
+        {
+          "text": "Show another items",
+          "event": "goto",
+          "data": "list_items"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "en",
+          "operator": "="
+        },
+        {
+          "property": "item_select",
+          "value": "3",
+          "operator": "="
+        }
+      ],
+      "regex": "(^bed|3$)"
+    },
+    {
+      "name": "show_item_3:vi",
+      "text": "Cái nệm đỉnh của chóp",
+      "thumb": "https://www.ikea.com/mx/en/images/products/malm-bed-frame-high-black-brown-luroey__0638608_pe699032_s5.jpg",
+      "price": 300,
+      "sub_text": "Chi tiết sản phẩm",
+      "buttons": [
+        {
+          "text": "Mua sản phẩm",
+          "event": "goto",
+          "data": "buy_item"
+        },
+        {
+          "text": "Xem danh sách sản phẩm",
+          "event": "goto",
+          "data": "list_items"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        },
+        {
+          "property": "item_select",
+          "value": "3",
+          "operator": "="
+        }
+      ],
+      "regex": "(giuong|nem|3$)"
+    },
+    {
+      "name": "buy_item",
+      "text": "Order Successful",
+      "buttons": [
+        {
+          "text": "Show another items",
+          "event": "goto",
+          "data": "list_items"
+        },
+        {
+          "text": "Stopping Conversation",
+          "event": "goto",
+          "data": "conversation_end"
+        }
+      ],
+      "condition": [
+        {
+          "property": "accessToken",
+          "value": "ID_accessTOKEN",
+          "operator": "="
+        },
+        {
+          "property": "item_select",
+          "value": "item_select:id",
+          "operator": "="
+        }
+      ],
+      "regex": "^buy"
+    },
+    {
+      "name": "buy_item:vi",
+      "text": "Mua hàng thành công",
+      "buttons": [
+        {
+          "text": "Xem sản phẩm khác",
+          "event": "goto",
+          "data": "list_items"
+        },
+        {
+          "text": "Kết thúc cuộc trò chuyện",
+          "event": "goto",
+          "data": "conversation_end"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        }
+      ],
+      "regex": "mua|thanh toan"
+    },
+    {
+      "name": "not_found",
+      "text": "Sorry , we do not understand your request, please search again or click button to continue!",
+      "buttons": [
+        {
+          "text": "Show List Items",
+          "event": "goto",
+          "data": "list_items"
+        },
+        {
+          "text": "Stopping Conversation",
+          "event": "goto",
+          "data": "conversation_end"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "en",
+          "operator": "="
+        }
+      ]
+    },
+    {
+      "name": "not_found:vi",
+      "text": "Xin lỗi , chúng tôi không hiểu được yêu cầu của quý khách, vui lòng chọn để tiếp tục",
+      "buttons": [
+        {
+          "text": "Xem Danh Sách Sản Phẩm",
+          "event": "goto",
+          "data": "list_items"
+        },
+        {
+          "text": "Kết thúc cuộc trò chuyện",
+          "event": "goto",
+          "data": "conversation_end"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        }
+      ]
+    },
+    {
+      "name": "conversation_end:vi",
+      "text": "Xin chào và hẹn gặp lại quý khách",
+      "buttons": [],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        }
+      ],
+      "regex": "ket thuc|tam biet"
+    },
+    {
+      "name": "conversation_end",
+      "text": "See you later",
+      "buttons": [],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "en",
+          "operator": "="
+        }
+      ],
+      "regex": "^(end|goodbye|stop)"
+    }
+  ]
+}
