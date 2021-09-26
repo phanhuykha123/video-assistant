@@ -10,10 +10,12 @@ const typeDefs = gql`
     text: String
     thumb: String
     price: String
-    sub_text: String
     buttons: [Button]
     condition:[Condition]
     regex: String
+    type: String
+    videoUrl: String
+    videoTitle: String
   }
 
   type Button {
@@ -63,10 +65,12 @@ const typeDefs = gql`
     text: String
     thumb: String
     price: String
-    sub_text: String
     buttons: [ButtonInput]
     condition:[ConditionInput]
     regex: String
+    type: String
+    videoUrl: String
+    videoTitle: String
   }
 
   input CurrentNode {
