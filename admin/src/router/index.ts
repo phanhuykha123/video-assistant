@@ -15,7 +15,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'DashBoard',
     // beforeEnter: checkLogin,
     component: () => import('../views/DashBoard.vue'),
-    beforeEnter: Auth.routeGuard,
+    // beforeEnter: Auth.routeGuard,
     children: [
       {
         path: 'user',

@@ -6,14 +6,46 @@
     label-width="5px"
     :rules="rules"
   >
+    <el-row>
+      <el-col :span="24">
+        <el-form-item label="Node Type">
+          <el-select
+            v-model="formData.type"
+            placeholder="Select"
+            :disabled="editNode ? true : false"
+          >
+            <el-option
+              v-for="item in types"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </el-form-item>
+      </el-col>
+    </el-row>
+
     <el-row :gutter="10">
       <el-col :span="24">
         <el-form-item label="Chat Name" prop="name">
-          <el-input v-model="formData.name" placeholder="Ex: conversation_start..."></el-input>
+          <el-input
+            v-model="formData.name"
+            placeholder="Ex: conversation_start..."
+            :disabled="editNode ? true : false"
+          ></el-input>
         </el-form-item>
-        <el-form-item label="Chat Text" prop="text">
+        <el-form-item label="Chat Text" prop="text" v-if="formData.type === 'text'">
           <el-input v-model="formData.text" placeholder="Ex: Welcome to my store..."></el-input>
         </el-form-item>
+        <template v-else>
+          <el-form-item label="Video Title">
+            <el-input v-model="formData.videoTitle" placeholder="Ex: Video Title..."></el-input>
+          </el-form-item>
+          <el-form-item label="Video Url">
+            <el-input v-model="formData.videoUrl" placeholder="Ex: Video Title..."></el-input>
+          </el-form-item>
+        </template>
       </el-col>
     </el-row>
 
@@ -231,6 +263,11 @@ export default defineComponent({
       text: [{ required: true, message: 'Please input chat text.', trigger: 'blur' }]
     };
 
+    const types = [
+      { label: 'Video', value: 'video' },
+      { label: 'Text', value: 'text' }
+    ];
+
     const editNode = computed(() => store.getters['chatbot/getEditNode']);
 
     const formData: any =
@@ -242,8 +279,10 @@ export default defineComponent({
         regex: '',
         condition: [],
         price: '',
-        sub_text: '',
-        thumb: ''
+        thumb: '',
+        videoTitle: '',
+        videoUrl: '',
+        type: 'text'
       });
 
     const buttonEvents = [
@@ -344,7 +383,7 @@ export default defineComponent({
       const newButtons = formData.buttons.map((button: any) => {
         return {
           event: button.event,
-          data: JSON.stringify(button.data),
+          data: button.event === 'capture' ? JSON.stringify(button.data) : button.data,
           text: button.text
         };
       });
@@ -360,6 +399,8 @@ export default defineComponent({
       rules,
       buttonEvents,
       nodeDatas,
+      types,
+      editNode,
       // Methods
       addButton,
       addConditions,

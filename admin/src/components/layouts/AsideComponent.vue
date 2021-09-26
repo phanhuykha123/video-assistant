@@ -49,7 +49,7 @@ export default defineComponent({
       },
       {
         id: '2',
-        name: `Welcome ${user.value.name}`,
+        name: `Welcome`,
         icon: 'el-icon-user',
         path: '/dash-board/user'
       },

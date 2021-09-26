@@ -1,19 +1,21 @@
 <template>
-  <el-dialog
-    :title="modalTitle"
-    v-model="dialogVisibleLocal"
-    width="65%"
-    :before-close="handleBeforeClose"
-    :destroy-on-close="true"
-  >
-    <chat-bot-form ref="formAdd" />
+  <el-scrollbar>
+    <el-dialog
+      :title="modalTitle"
+      v-model="dialogVisibleLocal"
+      width="65%"
+      :before-close="handleBeforeClose"
+      :destroy-on-close="true"
+    >
+      <chat-bot-form ref="formAdd" />
 
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button type="primary" @click="handleSubmitForm">Confirm</el-button>
-      </span>
-    </template>
-  </el-dialog>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button type="primary" @click="handleSubmitForm">Confirm</el-button>
+        </span>
+      </template>
+    </el-dialog>
+  </el-scrollbar>
 </template>
 
 <script lang="ts">
@@ -75,6 +77,7 @@ export default defineComponent({
   methods: {
     handleSubmitForm() {
       const formValues = (this.$refs.formAdd as any).submitForm('formChatBot');
+
       if (formValues) {
         if (this.editNode) {
           this.handleResetForm();
