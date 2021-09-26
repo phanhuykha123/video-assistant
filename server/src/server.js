@@ -7,6 +7,7 @@ const db = require('./config/database.ts');
 const typeDefs = require('./types/typeDefs');
 const resolvers = require('./resolvers/resolvers');
 const cors = require('cors');
+const bodyParser = require('body-parser')
 
 const { port } = process.env;
 
@@ -18,6 +19,9 @@ const httpServer = http.createServer(app);
 const route = require('./routes');
 
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 route(app);
 
 const server = new ApolloServer({
