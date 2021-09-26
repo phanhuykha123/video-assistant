@@ -1,0 +1,47 @@
+[
+  {
+    "vi": {
+      "text": "Cái bàn làm việc cực đã",
+      "thumb": "https://www.ikea.com/cz/en/images/products/ekedalen-extendable-table-dark-brown__0736963_pe740827_s5.jpg",
+      "price": 999,
+      "sub_text": "Chi tiết sản phẩm"
+    },
+    "en": {
+      "text": "Desk, a table, frame, or case with a sloping or horizontal top particularly designed to aid writing or reading",
+      "thumb": "https://www.ikea.com/cz/en/images/products/ekedalen-extendable-table-dark-brown__0736963_pe740827_s5.jpg",
+      "price": 999,
+      "sub_text": "Product detail"
+    }
+  },
+
+  {
+    "vi": {
+      "text": "Cái ghế ngồi siêu êm",
+      "thumb": "https://www.ikea.com/mx/en/images/products/stefan-chair-brown-black__0727320_pe735593_s5.jpg?f=s",
+      "price": 10000,
+      "sub_text": "Chi tiết sản phẩm"
+    },
+    "en": {
+      "text": "A chair is a piece of furniture. It is used for sitting on and it can also be used for standing on, if you can't reach something",
+      "thumb": "https://www.ikea.com/mx/en/images/products/stefan-chair-brown-black__0727320_pe735593_s5.jpg?f=s",
+      "price": 10000,
+      "sub_text": "Product detail"
+    }
+  },
+
+  {
+    "vi": {
+      "text": "Cái nệm đỉnh của chóp",
+      "thumb": "https://www.ikea.com/mx/en/images/products/malm-bed-frame-high-black-brown-luroey__0638608_pe699032_s5.jpg",
+      "price": 300,
+      "sub_text": "Chi tiết sản phẩm"
+    },
+    "en": {
+      "text": "A bed is a piece of furniture which is used as a place to sleep and relax",
+      "thumb": "https://www.ikea.com/mx/en/images/products/malm-bed-frame-high-black-brown-luroey__0638608_pe699032_s5.jpg",
+      "price": 300,
+      "sub_text": "Detail product"
+    },
+    "id": "show_item"
+  }
+]
