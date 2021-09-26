@@ -9,7 +9,9 @@ export const getAll = gql`
         text
         thumb
         price
-        sub_text
+        type
+        videoUrl
+        videoTitle
         buttons {
           text
           event

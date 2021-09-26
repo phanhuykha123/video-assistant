@@ -52,8 +52,6 @@ export default defineComponent({
       (this.$refs.chatFormModal as any).open();
     },
     handleEdit() {
-      console.log('edited');
-
       this.openModal();
     }
   }

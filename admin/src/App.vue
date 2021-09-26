@@ -15,6 +15,10 @@
   box-sizing: border-box !important;
 }
 
+.el-overlay-dialog {
+  overflow: auto;
+}
+
 .el-container {
   position: relative;
 }
