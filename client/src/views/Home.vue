@@ -49,7 +49,7 @@ export default {
       isLoading: 'chat/isLoading',
     }),
     url() {
-      return this.node.data.url;
+      return this.node.videoUrl;
     },
   },
   methods: {
@@ -66,12 +66,20 @@ export default {
       this.setAutoplay(false);
     },
     async handleNextNode(payload) {
-      await this.getNode({ data: payload });
+      await this.getNode({
+        currentNode: payload,
+      });
       this.setAutoplay(true);
     },
   },
   mounted() {
-    this.getNode({ data: 'conversation_start' });
+    this.getNode({
+      currentNode: {
+        type: 'video',
+        event: 'goto',
+        data: 'video_welcome',
+      },
+    });
   },
 };
 </script>

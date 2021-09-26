@@ -18,7 +18,7 @@ db.connect();
 app = express().use(bodyParser.json());
 const httpServer = http.createServer(app);
 const route = require('./routes');
-
+app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));

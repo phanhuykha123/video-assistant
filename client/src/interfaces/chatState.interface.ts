@@ -7,8 +7,9 @@ export interface ChatState {
 
 export interface Node {
   name: string;
-  title: string;
-  url: string;
+  type: string;
+  videoTitle: string;
+  videoUrl: string;
   buttons: Button[];
 }
 

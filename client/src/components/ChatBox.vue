@@ -7,28 +7,42 @@
         :videoId="videoId"
         :videoURL="url"
         :isAnimated="isAnimated"
+        ref="myPlayer"
       />
 
       <div class="chat-box__content">
         <div class="chat-bot__titles" :class="{ animated: isAnimated }">
-          <p class="chat-bot__title--item">{{ node.data.title }}</p>
+          <p class="chat-bot__title--item">{{ node.data.videoTitle }}</p>
         </div>
       </div>
-
-      <div class="buttons-group scroll-style">
-        <button
-          class="button-item"
-          round
-          v-for="(button, index) in buttonData"
-          :key="button.data"
-          @click="handleNextNode(button.data)"
-        >
-          <span class="button-item__badge">{{
-            String.fromCharCode(97 + index).toUpperCase()
-          }}</span>
-          <span class="button-text">{{ button.text }}</span>
-        </button>
-      </div>
+      <transition name="fade">
+        <div class="buttons-group scroll-style" v-show="!isInput">
+          <button
+            class="button-item"
+            round
+            v-for="(button, index) in buttonData"
+            :key="index"
+            @click="handleNextNode(button)"
+          >
+            <span class="button-item__badge">{{
+              String.fromCharCode(97 + index).toUpperCase()
+            }}</span>
+            <span class="button-text">{{ button.text }}</span>
+          </button>
+        </div>
+      </transition>
+      <transition name="fade">
+        <form class="chat-input" v-show="isInput" @submit.prevent="handleUserCommand">
+          <input
+            type="text"
+            v-model="chatCommand"
+            placeholder="Type something..."
+            id="userInput"
+            autocomplete="off"
+          />
+          <button type="submit">SEND</button>
+        </form>
+      </transition>
     </div>
   </div>
 </template>
@@ -43,6 +57,9 @@ export default {
   data() {
     return {
       isAnimated: false,
+      chatCommand: '',
+      isInput: false,
+      currentNode: null,
     };
   },
   computed: {
@@ -53,7 +70,7 @@ export default {
       return this.node.data.buttons;
     },
     url() {
-      return this.node.data.url;
+      return this.node.data.videoUrl;
     },
   },
   methods: {
@@ -64,7 +81,15 @@ export default {
       this.isAnimated = true;
     },
     handleNextNode(payload) {
-      this.$emit('onNextNode', payload);
+      if (!payload.event.includes('input')) return this.$emit('onNextNode', payload);
+      this.isInput = true;
+      this.currentNode = payload;
+      const videoPlayer = this.$refs.myPlayer.player;
+      videoPlayer.pause();
+    },
+    handleUserCommand() {
+      this.isInput = false;
+      return this.$emit('onNextNode', { ...this.currentNode, command: this.chatCommand });
     },
   },
 };
@@ -85,5 +110,14 @@ export default {
 .scroll-style::-webkit-scrollbar-thumb {
   background-color: #414649;
   border-radius: 10px;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(10px);
 }
 </style>
