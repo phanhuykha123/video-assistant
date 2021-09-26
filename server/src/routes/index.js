@@ -1,6 +1,19 @@
-
+const Content = require('../models/Content');
 const request = require('request');
 function route(app) {
+    app.post('/navigateNode',async (req, res) => {
+        const data = await Content.findById(process.env.ID);
+        const currentNode = req.body.currentNode;
+        let matchNode,temp=false;
+        data.content.find(node =>{
+           if(node.name === currentNode.data && node.type === currentNode.type){
+               matchNode = node;
+               temp=true;
+           }
+        })
+        if(temp) return res.status(200).json(matchNode);
+        else return res.status(404).json({message: 'Node not found'});
+    })
     const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
     const VERIFY_TOKEN = process.env.VERIFY_TOKEN;
     app.get('/webhook', (req, res) => {
@@ -36,7 +49,6 @@ function route(app) {
         }
 
     });
-    const chatbot = require('../data/chatbot.json');
     function handleMessage(sender_psid, received_message) {
         let response;
         if (received_message.text) {
