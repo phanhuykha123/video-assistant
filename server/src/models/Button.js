@@ -11,6 +11,9 @@ const ButtonSchema = new mongoose.Schema({
     data:{
         type:String,
     },
+    thumb: String,
+    price: String,
+    sub_text: String,
 });
 
 const Button = mongoose.model('button',ButtonSchema);
