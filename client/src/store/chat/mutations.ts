@@ -13,4 +13,10 @@ export default {
   SET_LOADING(state: ChatState, payload: boolean): void {
     state.isLoading = payload;
   },
+  SET_USER_LANG(state: ChatState, payload: string): void {
+    state.userState.language = payload;
+  },
+  SET_USER_NAME(state: ChatState, payload: string): void {
+    state.userState.name = payload;
+  },
 };
