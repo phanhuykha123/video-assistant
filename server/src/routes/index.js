@@ -1,11 +1,12 @@
 const request = require('request');
 const state = require('../models/State');
 const Content = require('../models/Content');
+const Order = require('../models/Order');
 const { setUserStatus } = require('../middleware/storage');
 const {  setStateOfUser } = require('../middleware/stateOfUser');
 
 function route(app) {
-    app.post('/navigateNode',setStateOfUser,async (req, res) => {
+app.post('/navigateNode',setStateOfUser,async (req, res) => {
         const data = await Content.findById(process.env.ID);
         const oldNode  = req.body.currentNode;
         let stateUser = await state.findOne({userId: oldNode.name});
@@ -39,6 +40,32 @@ function route(app) {
         });
         else return res.status(404).json({message: 'Node not found'});
     });
+
+app.post('/order',async (req, res) => {
+    try{
+        //Save order form
+        const {name, address, phone} = req.body;
+        const orderInformation = new Order({ name, address, phone});
+        await orderInformation.save();
+
+        //Get Node conversation_end
+        const stateUser = await state.findOne({userId: name});
+        const data = await Content.findById(process.env.ID);
+        data.content.find(node => {
+            const nameNextNode = stateUser.language === 'en' ? 'conversation_end' : 'conversation_end:vi';
+            if(node.name === nameNextNode){
+                res.status(200).json({
+                    status: 'message',
+                    data: node,
+                });
+            }
+        })
+
+    }catch (e) {
+        res.status(503).json({message:"Server not saved information order !!!"})
+    }
+
+})
 
 app.get('/webhook',function (req, res) {
         let VERIFY_TOKEN = process.env.VERIFY_TOKEN;
