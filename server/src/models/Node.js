@@ -4,6 +4,7 @@ const Condition = require('./Condition');
 
 const NodeSchema = new mongoose.Schema({
   name: String,
+  ui: String,
   type: String,
   videoTitle:String,
   videoUrl:String,

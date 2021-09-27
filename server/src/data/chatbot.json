@@ -2,6 +2,7 @@
     "content": [
       {
         "name": "conversation_start",
+        "ui": "regular",
         "type": "video",
         "videoTitle": "conversation_start",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
@@ -10,18 +11,19 @@
           {
             "text": "Tiếng Việt",
             "event": "capture",
-            "data": "{'key': 'language_select','lang':'vi','next':'conversation_welcome'}"
+            "data": "{\"key\": \"language_select\",\"lang\":\"vi\",\"next\":\"conversation_welcome\"}"
           },
           {
             "text": "Tiếng Anh",
             "event": "capture",
-            "data": "{'key': 'language_select','lang':'en','next':'conversation_welcome'}"
+            "data": "{\"key\": \"language_select\",\"lang\":\"en\",\"next\":\"conversation_welcome\"}"
           }
         ],
         "regex": "^(language)$"
       },
       {
         "name": "conversation_welcome",
+        "ui": "regular",
         "type": "video",
         "videoTitle": "conversation_welcome",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
@@ -45,6 +47,7 @@
       },
       {
         "name": "conversation_welcome:vi",
+        "ui": "regular",
         "type": "video",
         "videoTitle": "conversation_welcome",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
@@ -68,6 +71,7 @@
       },
       {
         "name": "list_items",
+        "ui": "carousel",
         "type": "video",
         "videoTitle": "list_items",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
@@ -77,19 +81,19 @@
             "text": "Desk",
             "thumb": "https://www.ikea.com/cz/en/images/products/ekedalen-extendable-table-dark-brown__0736963_pe740827_s5.jpg",
             "event": "capture",
-            "data": "{'key':'item_select','value':'1','next':'show_item_1'}"
+            "data": "{\"key\":\"item_select\",\"value\":\"1\",\"next\":\"show_item_1\"}"
           },
           {
             "text": "Chair",
             "thumb": "https://www.ikea.com/mx/en/images/products/stefan-chair-brown-black__0727320_pe735593_s5.jpg?f=s",
             "event": "capture",
-            "data": "{'key':'item_select','value':'2','next':'show_item_2'}"
+            "data": "{\"key\":\"item_select\",\"value\":\"2\",\"next\":\"show_item_2\"}"
           },
           {
             "text": "Bed",
             "thumb": "https://www.ikea.com/mx/en/images/products/malm-bed-frame-high-black-brown-luroey__0638608_pe699032_s5.jpg",
             "event": "capture",
-            "data": "{'key':'item_select','value':'3','next':'show_item_3'}"
+            "data": "{\"key\":\"item_select\",\"value\":\"3\",\"next\":\"show_item_3\"}"
           }
         ],
         "condition": [
@@ -112,19 +116,19 @@
             "text": "Bàn",
             "thumb": "https://www.ikea.com/cz/en/images/products/ekedalen-extendable-table-dark-brown__0736963_pe740827_s5.jpg",
             "event": "capture",
-            "data": "{'key':'item_select','value':'1','next':'show_item_1'}"
+            "data": "{\"key\":\"item_select\",\"value\":\"1\",\"next\":\"show_item_1\"}"
           },
           {
             "text": "Ghế",
             "thumb": "https://www.ikea.com/mx/en/images/products/stefan-chair-brown-black__0727320_pe735593_s5.jpg?f=s",
             "event": "capture",
-            "data": "{'key':'item_select','value':'2','next':'show_item_2'}"
+            "data": "{\"key\":\"item_select\",\"value\":\"2\",\"next\":\"show_item_2\"}"
           },
           {
             "text": "Nệm",
             "thumb": "https://www.ikea.com/mx/en/images/products/malm-bed-frame-high-black-brown-luroey__0638608_pe699032_s5.jpg",
             "event": "capture",
-            "data": "{'key':'item_select','value':'3','next':'show_item_3'}"
+            "data": "{\"key\":\"item_select\",\"value\":\"3\",\"next\":\"show_item_3\"}"
           }
         ],
         "condition": [
@@ -138,6 +142,7 @@
       },
       {
         "name": "show_item_1",
+        "ui": "modal",
         "type": "video",
         "videoTitle": "show_item_1",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
@@ -149,7 +154,7 @@
           {
             "text": "Buy Item",
             "event": "goto",
-            "data": "buy_item"
+            "data": "user_information"
           },
           {
             "text": "Show another items",
@@ -172,7 +177,24 @@
         "regex": "(^desk|1$)"
       },
       {
+        "name": "user_information",
+        "ui": "form",
+        "buttons": [
+          {
+            "text": "Show Another Item",
+            "event": "goto",
+            "data": "list_items"
+          },
+          {
+            "text": "Quit Shopping",
+            "event": "goto",
+            "data": "conversation_end"
+          }
+        ]
+      },
+      {
         "name": "show_item_1:vi",
+        "ui": "modal",
         "type": "video",
         "videoTitle": "show_item_1:vi",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
@@ -208,10 +230,11 @@
       },
       {
         "name": "show_item_2",
+        "ui": "modal",
         "type": "video",
         "videoTitle": "show_item_2",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
-        "text": "A chair is a piece of furniture. It is used for sitting on and it can also be used for standing on, if you can't reach something",
+        "text": "A chair is a piece of furniture. It is used for sitting on and it can also be used for standing on, if you can\"t reach something",
         "thumb": "https://www.ikea.com/mx/en/images/products/stefan-chair-brown-black__0727320_pe735593_s5.jpg?f=s",
         "price": 10000,
         "sub_text": "Product detail",
@@ -243,6 +266,7 @@
       },
       {
         "name": "show_item_2:vi",
+        "ui": "modal",
         "type": "video",
         "videoTitle": "show_item_2:vi",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
@@ -278,6 +302,7 @@
       },
       {
         "name": "show_item_3",
+        "ui": "modal",
         "type": "video",
         "videoTitle": "show_item_3",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
@@ -313,6 +338,7 @@
       },
       {
         "name": "show_item_3:vi",
+        "ui": "modal",
         "type": "video",
         "videoTitle": "show_item_3:vi",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
@@ -348,6 +374,7 @@
       },
       {
         "name": "buy_item",
+        "ui": "regular",
         "type": "video",
         "videoTitle": "buy_item",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
@@ -380,6 +407,7 @@
       },
       {
         "name": "buy_item:vi",
+        "ui": "regular",
         "type": "video",
         "videoTitle": "buy_item:vi",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
@@ -407,6 +435,7 @@
       },
       {
         "name": "not_found",
+        "ui": "regular",
         "type": "text",
         "text": "Sorry , we do not understand your request, please search again or click button to continue!",
         "buttons": [
@@ -431,6 +460,7 @@
       },
       {
         "name": "not_found:vi",
+        "ui": "regular",
         "type": "text",
         "text": "Xin lỗi , chúng tôi không hiểu được yêu cầu của quý khách, vui lòng chọn để tiếp tục",
         "buttons": [
@@ -455,6 +485,7 @@
       },
       {
         "name": "conversation_end:vi",
+        "ui": "regular",
         "type": "text",
         "text": "Xin chào và hẹn gặp lại quý khách",
         "buttons": [],
@@ -469,6 +500,7 @@
       },
       {
         "name": "conversation_end",
+        "ui": "regular",
         "type": "text",
         "text": "See you later",
         "buttons": [],
@@ -483,6 +515,7 @@
       },
       {
         "name": "video_welcome",
+        "ui": "regular",
         "type": "video",
         "videoTitle": "What do you want to create ?",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
@@ -507,6 +540,7 @@
         "condition": []
       }, {
         "name": "video_messages",
+        "ui": "regular",
         "type": "video",
         "videoTitle": "Welcome",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
@@ -522,6 +556,7 @@
         "condition": []
       }, {
         "name": "video_training",
+        "ui": "regular",
         "type": "video",
         "videoTitle": "We love personalized video messages !",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
@@ -542,6 +577,7 @@
         "regex": ""
       }, {
         "name": "video_example",
+        "ui": "regular",
         "type": "video",
         "videoTitle": "Video Example!",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
@@ -561,6 +597,7 @@
         "condition": []
       }, {
         "name": "learn_more",
+        "ui": "regular",
         "type": "text",
         "text": "If you want information .Please contact me !, Thanks",
         "buttons": [{
@@ -571,6 +608,7 @@
         "condition": []
       }, {
         "name": "attend",
+        "ui": "regular",
         "type": "text",
         "text": "Attend Here !",
         "buttons": [{
@@ -580,11 +618,12 @@
         }, {
           "text": "Capture",
           "event": "capture",
-          "data": "{'next':'conversation_welcome:vi','key':'language_select','value':'vi'}"
+          "data": "{\"next\":\"conversation_welcome:vi\",\"key\":\"language_select\",\"value\":\"vi\"}"
         }],
         "condition": []
       }, {
         "name": "book_demo",
+        "ui": "regular",
         "type": "text",
         "text": "Book a Demo!",
         "buttons": [],
@@ -592,9 +631,9 @@
         "regex": ""
       },
 
-
       {
         "name": "video_messages:vi",
+        "ui": "regular",
         "type": "video",
         "videoTitle": "Welcome",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
@@ -610,6 +649,7 @@
         "condition": []
       }, {
         "name": "video_training:vi",
+        "ui": "regular",
         "type": "video",
         "videoTitle": "We love personalized video messages !",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
@@ -630,6 +670,7 @@
         "regex": ""
       }, {
         "name": "video_example:vi",
+        "ui": "regular",
         "type": "video",
         "videoTitle": "Video Example!",
         "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
@@ -649,6 +690,7 @@
         "condition": []
       }, {
         "name": "learn_more:vi",
+        "ui": "regular",
         "type": "text",
         "text": "If you want information .Please contact me !, Thanks",
         "buttons": [{
@@ -659,6 +701,7 @@
         "condition": []
       }, {
         "name": "attend:vi",
+        "ui": "regular",
         "type": "text",
         "text": "Attend Here !",
         "buttons": [{
@@ -668,11 +711,12 @@
         }, {
           "text": "Capture",
           "event": "capture",
-          "data": "{'next':'conversation_welcome:vi','key':'language_select','value':'vi'}"
+          "data": "{\"next\":\"conversation_welcome:vi\",\"key\":\"language_select\",\"value\":\"vi\"}"
         }],
         "condition": []
       }, {
         "name": "book_demo:vi",
+        "ui": "regular",
         "type": "text",
         "text": "Book a Demo!",
         "buttons": [],

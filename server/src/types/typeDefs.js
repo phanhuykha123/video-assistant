@@ -62,6 +62,7 @@ const typeDefs = gql`
 
   input NodeInput {
     name: String
+    ui: String
     text: String
     thumb: String
     price: String
