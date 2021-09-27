@@ -2,44 +2,56 @@ const request = require('request');
 const state = require('../models/State');
 const Content = require('../models/Content');
 const Order = require('../models/Order');
+const User = require('../models/User');
 const { setUserStatus } = require('../middleware/storage');
 const {  setStateOfUser } = require('../middleware/stateOfUser');
 
 function route(app) {
-app.post('/navigateNode',setStateOfUser,async (req, res) => {
+// app.post('/navigateNode',setStateOfUser,async (req, res) => {
+app.post('/navigateNode',async (req, res) => {
         const data = await Content.findById(process.env.ID);
-        const oldNode  = req.body.currentNode;
-        let stateUser = await state.findOne({userId: oldNode.name});
-        let matchNode,temp=false;
-        data.content.map(item => {
-            let nameNextNode = oldNode.event === 'capture' ? oldNode.data.next : oldNode.data;
-            nameNextNode = stateUser.language === 'vi' ? nameNextNode + ":vi" : nameNextNode;
-
-            if(item.name === nameNextNode) {
-                if (oldNode.event === 'goto') {
-                    matchNode = item
-                    temp = true;
-                    // console.log(matchNode)
-                    return matchNode;
-                };
-                data.content.map(node => {
-                    const condition = node.condition;
-                    condition.map(cond => {
-                        if (cond.property === oldNode.data.key) {
-                            temp = true;
-                        }
-                    })
-                });
-                if(temp)  matchNode = item;
-            }
+        const oldNode  = {...req.body.currentNode};
+        const nameNextNode = oldNode.event === 'capture' ? oldNode.data.next : oldNode.data;
+        const node = data.content.find(node => {
+            if(nameNextNode === node.name) return node;
         })
+        
+            const newNode = JSON.parse(JSON.stringify(node));
+            newNode.buttons = newNode.buttons.map(but => {
+                if(but.event === 'capture') {
+                    but.data = JSON.parse(but.data)
+                }
+                return but;
+            });
+        
 
-        if(temp) return res.status(200).json({
-            status: 'message',
-            data: matchNode,
+        if(node) return res.status(200).json({
+            status: 'success',
+            data: newNode,
         });
-        else return res.status(404).json({message: 'Node not found'});
+        res.status(404).json({status: 'failed', message: 'Node Not found'});
     });
+
+    
+app.post('/user', async(req, res) => {
+
+    try{
+        const data = await Content.findById(process.env.ID);
+        const {name , language} = req.body.user
+        await User.create({name,language});
+
+        const nextNode = data.content.find(node => node.name === `conversation_welcome${language === 'vi' ? ':vi' :''}`);
+
+        res.status(200).json({
+            status: 'success',
+            data: nextNode,
+        })
+    }catch(err){
+        console.log(err);
+        res.status(400).json({status: 'failed', message: err.message});
+    }
+    
+})
 
 app.post('/order',async (req, res) => {
     try{

@@ -8,3 +8,10 @@ export function getNode(data: any) {
     data,
   });
 }
+export function createNewUser(data: any) {
+  return request({
+    url: '/user',
+    method: 'POST',
+    data,
+  });
+}

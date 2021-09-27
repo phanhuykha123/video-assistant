@@ -3,6 +3,7 @@ export interface ChatState {
   timeout: number;
   autoplay: boolean;
   isLoading: boolean;
+  userState: UserState;
 }
 
 export interface Node {
@@ -15,6 +16,11 @@ export interface Node {
 
 export interface Button {
   text: string;
-  event: String;
-  data: String;
+  event: string;
+  data: string;
+}
+
+export interface UserState {
+  name: string;
+  language: string;
 }

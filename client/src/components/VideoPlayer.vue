@@ -44,8 +44,6 @@ export default {
       fill: true,
     });
 
-    console.log(this.player);
-
     this.player.src({ type: 'video/mp4', src: this.videoURL });
     this.player.on('play', () => {
       this.$emit('showTitle');

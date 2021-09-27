@@ -1,4 +1,4 @@
-import { ChatState, Node } from '@/interfaces/chatState.interface';
+import { ChatState, Node, UserState } from '@/interfaces/chatState.interface';
 
 export default {
   node(state: ChatState): Node {
@@ -12,5 +12,8 @@ export default {
   },
   isLoading(state: ChatState): boolean {
     return state.isLoading;
+  },
+  userState(state: ChatState): UserState {
+    return state.userState;
   },
 };
