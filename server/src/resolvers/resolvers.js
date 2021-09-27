@@ -1,6 +1,6 @@
 const Content = require('../models/Content');
 const User = require('../models/User');
-const { UserInputError, InternalServerError } = require('apollo-server');
+const { UserInputError } = require('apollo-server');
 
 const resolvers = {
   Query: {
@@ -22,7 +22,6 @@ const resolvers = {
   },
   Mutation: {
     createContent: async (parent, { idContent, dto }, context, info) => {
-      console.log(idContent);
       const data = await Content.findById(idContent);
       const isExistName = data.content.filter((item) => item.name === dto.name);
       if (isExistName.length) {
@@ -33,8 +32,6 @@ const resolvers = {
     },
 
     updateContent: async (parent, { idContent, updatedNode }, context, info) => {
-      console.log(idContent, updatedNode);
-
       const record = await Content.findById(idContent);
       let isExistName = false;
       let arrContent = [];
@@ -42,13 +39,11 @@ const resolvers = {
         if (node.name === updatedNode.name) {
           isExistName = true;
           node = { ...updatedNode };
-          console.log('node', node);
           arrContent.push(node);
         } else {
           arrContent.push(node);
         }
       });
-      console.log(arrContent);
       if (isExistName === false) {
         throw new UserInputError('Name of node must be unique!!!');
       }
@@ -59,7 +54,7 @@ const resolvers = {
       const record = await Content.findOne({ idContent });
       const updatedContent = record.content.filter((item) => item.name !== name);
       await Content.updateMany({ id: idContent }, { content: updatedContent });
-      return Content.findOne({ idContent });
+      return {content: updatedContent};
     },
 
     storeHistory: async (parent, { userId, chatArr }, context, info) => {

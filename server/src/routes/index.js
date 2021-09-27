@@ -8,14 +8,19 @@ function route(app) {
         const data = await Content.findById(process.env.ID);
         // console.log(process.env.ID)
         const currentNode = req.body.currentNode;
+        console.log(currentNode);
         let matchNode,temp=false;
         data.content.find(node =>{
-            if(node.name === currentNode.data && node.type === currentNode.type){
-                matchNode = node;
-                temp=true;
-            }
+           if(node.name === currentNode.data){
+               if(currentNode.command) node.videoTitle = `${node.videoTitle} ${currentNode.command}!`;
+               matchNode = node;
+               temp=true;
+           }
         })
-        if(temp) return res.status(200).json(matchNode);
+        if(temp) return res.status(200).json({
+            status: 'message',
+            data: matchNode,
+        });
         else return res.status(404).json({message: 'Node not found'});
     })
 

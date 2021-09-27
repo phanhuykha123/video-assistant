@@ -61,7 +61,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script>
 import StatusIcon from './StatusIcon.vue';
 import socket from '../socket/socket';
 export default {

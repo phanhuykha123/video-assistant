@@ -8,7 +8,7 @@
 
     <el-table-column label="Chat Text" width="360">
       <template #default="scope">
-        <span>{{ scope.row.text || '-' }}</span>
+        <span>{{ scope.row.text || scope.row.videoTitle }}</span>
       </template>
     </el-table-column>
 
@@ -81,6 +81,7 @@ export default defineComponent({
       })
         .then((res) => {
           const newChatbotData: ChatNode[] = res?.data.deleteContent.content;
+
           setChatbotData(newChatbotData);
           ElMessage.success('Delete Successfully');
         })
