@@ -8,39 +8,37 @@
 		>
 			<el-row class="product-item" :gutter="20">
 				<el-col :span="12" class="product-item__image">
-					<img
-						src="https://images.pexels.com/photos/1042143/pexels-photo-1042143.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
-						alt=""
-						style="width:100% ; height: 65vh; object-fit: cover"
-					/>
+					<img :src="product.thumb" alt="" style="width:100% ; height: 65vh; object-fit: cover" />
 				</el-col>
 				<el-col :span="12" class="product-item__content">
-					<h1>Iphone XS Max 2020</h1>
-					<p class="product-item__price">Price : 1000$</p>
+					<h1>{{ product.videoTitle }}</h1>
+					<p class="product-item__price">Price : {{ product.price }}$</p>
 					<p>
-						Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsa tempora pariatur
-						voluptatum nesciunt, delectus laboriosam porro expedita sit culpa nobis, accusantium quo
-						sunt voluptate. Unde sint expedita explicabo earum cumque dicta hic autem quam nemo
-						sapiente non maxime neque dolorum sequi blanditiis consectetur, error eveniet
-						repellendus enim accusantium quas. Illum.
+						{{ product.text }}
 					</p>
 				</el-col>
 			</el-row>
 			<span slot="footer" class="dialog-footer">
 				<el-button @click="dialogVisible = false">Cancel</el-button>
-				<el-button type="primary" @click="dialogVisible = false">Confirm</el-button>
+				<el-button type="primary" @click="dialogVisible = false">Buy</el-button>
 			</span>
 		</el-dialog>
 	</div>
 </template>
 
 <script>
+	import { mapGetters } from 'vuex';
 	export default {
 		name: 'ProductModal',
 		data() {
 			return {
 				dialogVisible: false,
 			};
+		},
+		computed: {
+			...mapGetters({
+				product: 'chat/productInfo',
+			}),
 		},
 		methods: {
 			handleClose(done) {
@@ -75,7 +73,7 @@
 		background: #ecf0f1;
 	}
 	.el-dialog__body {
-		padding: 10px;
+		padding: 20px;
 	}
 
 	.el-dialog__header {
@@ -95,5 +93,7 @@
 
 	.product-item__price {
 		margin: 20px 0;
+		font-size: 24px;
+		color: red;
 	}
 </style>
