@@ -47,22 +47,26 @@
 			</transition>
 		</div>
 
-		<chat-carousel v-else-if="node.data.ui === 'carousel'" />
+		<!-- <chat-carousel v-else-if="node.data.ui === 'carousel'" /> -->
 
-		<form-login v-else-if="node.data.ui === 'form' && node.data.name === 'form_login'" />
+		<form-login v-else-if="node.data.name === 'form_login'" />
 
 		<user-info v-else />
+		<transition name="fade">
+			<chat-slider v-if="productList" :productList="productList" />
+		</transition>
 	</div>
 </template>
 
 <script>
 	import { mapGetters } from 'vuex';
-	import ChatCarousel from './ChatCarousel.vue';
 	import UserInfo from './UserInfo.vue';
 	import FormLogin from './FormLogin.vue';
 	import VideoPlayer from './VideoPlayer.vue';
+	import ChatSlider from './ChatSlider.vue';
+
 	export default {
-		components: { VideoPlayer, ChatCarousel, UserInfo, FormLogin },
+		components: { VideoPlayer, UserInfo, FormLogin, ChatSlider },
 		props: ['videoId'],
 		name: 'ChatBox',
 		data() {
@@ -77,6 +81,7 @@
 			...mapGetters({
 				node: 'chat/node',
 				userState: 'chat/userState',
+				productList: 'chat/productList',
 			}),
 			buttonData() {
 				return this.node.data.buttons;

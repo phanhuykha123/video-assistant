@@ -22,4 +22,7 @@ export default {
 	SET_PRODUCT(state: ChatState, payload: any): void {
 		state.productInfo = payload;
 	},
+	SET_LIST_PRODUCTS(state: ChatState, payload: any): void {
+		state.productList = payload;
+	},
 };
