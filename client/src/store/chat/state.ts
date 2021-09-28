@@ -7,5 +7,6 @@ export default {
 		language: '',
 		name: '',
 	},
+	productList: null,
 	productInfo: null,
 };

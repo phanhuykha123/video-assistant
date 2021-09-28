@@ -6,6 +6,8 @@ import router from './router';
 import store from './store';
 import 'video.js/dist/video-js.css';
 import '@videojs/themes/dist/forest/index.css';
+import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 Vue.config.productionTip = false;
 
 Vue.use(ElementUI);

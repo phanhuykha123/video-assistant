@@ -5,6 +5,7 @@ export interface ChatState {
 	isLoading: boolean;
 	userState: UserState;
 	productInfo: any;
+	productList: any;
 }
 
 export interface Node {
