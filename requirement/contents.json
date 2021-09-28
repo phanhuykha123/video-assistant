@@ -1,0 +1,820 @@
+{
+  "_id": {
+    "$oid": "6151beef249cb1c6946c5b8c"
+  },
+  "content": [
+    {
+      "name": "conversation_start",
+      "ui": "regular",
+      "type": "video",
+      "videoTitle": "conversation_start",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
+      "text": "Vui lòng chọn ngôn ngữ để bắt đầu?",
+      "buttons": [
+        {
+          "text": "Tiếng Việt",
+          "event": "capture",
+          "data": "{\"key\": \"language_select\",\"value\":\"vi\",\"next\":\"conversation_welcome\"}"
+        },
+        {
+          "text": "Tiếng Anh",
+          "event": "capture",
+          "data": "{\"key\": \"language_select\",\"value\":\"en\",\"next\":\"conversation_welcome\"}"
+        }
+      ],
+      "regex": "^(language)$"
+    },
+    {
+      "name": "conversation_welcome",
+      "ui": "regular",
+      "type": "video",
+      "videoTitle": "Welcome to my store ABC",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
+      "text": "Welcome to my store ABC",
+      "buttons": [
+        {
+          "text": "Quit Shopping",
+          "event": "goto",
+          "data": "conversation_end"
+        },
+        {
+          "text": "Show List items",
+          "event": "goto",
+          "data": "list_items"
+        }
+      ],
+      "regex": "^(hi*(i)$|hello*(o)$)$",
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "en",
+          "operator": "="
+        }
+      ]
+    },
+    {
+      "ui": "form",
+      "name": "form_login",
+      "buttons": [
+        {
+          "text": "Continue",
+          "event": "goto",
+          "data": "conversation_welcome"
+        },
+        {
+          "text": "Go Back",
+          "event": "goto",
+          "data": "conversation_start"
+        }
+      ]
+    },
+    {
+      "name": "conversation_welcome:vi",
+      "ui": "regular",
+      "type": "video",
+      "videoTitle": "Chào mừng bạn đến với cửa hàng ABC",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
+      "text": "Chào mừng bạn đến với cửa hàng ABC",
+      "buttons": [
+        {
+          "text": "Kết thúc mua sắm",
+          "event": "goto",
+          "data": "conversation_end"
+        },
+        {
+          "text": "Xem Danh Sách Sản Phẩm",
+          "event": "goto",
+          "data": "list_items"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        }
+      ],
+      "regex": "(xin)?cha(o*)$"
+    },
+    {
+      "name": "list_items",
+      "ui": "carousel",
+      "type": "video",
+      "videoTitle": "list_items",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
+      "text": "List Items",
+      "buttons": [
+        {
+          "text": "Desktop Table VR 2021",
+          "thumb": "https://my-test-11.slatic.net/p/9e4ad26c3febe13ecd370fe6fc84bfaf.jpg",
+          "event": "capture",
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime,doloremque",
+          "data": "{\"key\":\"item_select\",\"value\":\"1\",\"next\":\"show_item_1\"}",
+          "price": "600"
+        },
+        {
+          "text": "Desktop Dragon ROG 2020",
+          "thumb": "https://cdn.discordapp.com/attachments/885924454755098629/892416416307871825/38686_razer_barracuda_x__1_.png",
+          "price": "700",
+          "event": "capture",
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime, doloremque",
+          "data": "{\"key\":\"item_select\",\"value\":\"2\",\"next\":\"show_item_2\"}"
+        },
+        {
+          "text": "Desktop Ultimate Phantom 2021",
+          "thumb": "https://cdn.discordapp.com/attachments/885924454755098629/892416496419090513/28984_razer_blackwidow_ultimate_2019_green_switch__1_.png",
+          "price": "650",
+          "event": "capture",
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime, doloremque",
+          "data": "{\"key\":\"item_select\",\"value\":\"3\",\"next\":\"show_item_3\"}"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "en",
+          "operator": "="
+        }
+      ],
+      "regex": "^(list|category)"
+    },
+    {
+      "name": "list_items:vi",
+      "type": "video",
+      "videoTitle": "list_items",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
+      "text": "Danh sách sản phẩm",
+      "buttons": [
+        {
+          "text": "Desktop Table VR 2021",
+          "thumb": "https://my-test-11.slatic.net/p/9e4ad26c3febe13ecd370fe6fc84bfaf.jpg",
+          "event": "capture",
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime,doloremque",
+          "data": "{\"key\":\"item_select\",\"value\":\"1\",\"next\":\"show_item_1\"}",
+          "price": "550"
+        },
+        {
+          "text": "Desktop Dragon ROG 2020",
+          "thumb": "https://cdn.discordapp.com/attachments/885924454755098629/892416416307871825/38686_razer_barracuda_x__1_.png",
+          "event": "capture",
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime,doloremque",
+          "price": "750",
+          "data": "{\"key\":\"item_select\",\"value\":\"2\",\"next\":\"show_item_2\"}"
+        },
+        {
+          "text": "Desktop Ultimate Phantom 2021",
+          "thumb": "https://cdn.discordapp.com/attachments/885924454755098629/892416496419090513/28984_razer_blackwidow_ultimate_2019_green_switch__1_.png",
+          "event": "capture",
+          "price": "800",
+          "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime,doloremque",
+          "data": "{\"key\":\"item_select\",\"value\":\"3\",\"next\":\"show_item_3\"}"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        }
+      ],
+      "regex": "san pham|danh sach"
+    },
+    {
+      "name": "show_item_1",
+      "ui": "modal",
+      "type": "video",
+      "videoTitle": "show_item_1",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
+      "text": "Desktop Table VR 2021",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime,doloremque, Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime,doloremque, Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime,doloremque,Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime,doloremque",
+      "thumb": "https://my-test-11.slatic.net/p/9e4ad26c3febe13ecd370fe6fc84bfaf.jpg",
+      "price": 600,
+      "sub_text": "Product detail",
+      "buttons": [
+        {
+          "text": "Buy Item",
+          "event": "goto",
+          "data": "user_information"
+        },
+        {
+          "text": "Show another items",
+          "event": "goto",
+          "data": "list_items"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "en",
+          "operator": "="
+        },
+        {
+          "property": "item_select",
+          "value": "1",
+          "operator": "="
+        }
+      ],
+      "regex": "(^desk|1$)"
+    },
+    {
+      "name": "user_information",
+      "ui": "form",
+      "buttons": [
+        {
+          "text": "Show Another Item",
+          "event": "goto",
+          "data": "list_items"
+        },
+        {
+          "text": "Quit Shopping",
+          "event": "goto",
+          "data": "conversation_end"
+        }
+      ]
+    },
+    {
+      "name": "show_item_1:vi",
+      "ui": "modal",
+      "type": "video",
+      "videoTitle": "show_item_1",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
+      "text": "Desktop Table VR 2021",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime,doloremque, Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime,doloremque, Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime,doloremque,Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime,doloremque",
+      "thumb": "https://my-test-11.slatic.net/p/9e4ad26c3febe13ecd370fe6fc84bfaf.jpg",
+      "price": 600,
+      "sub_text": "Chi tiết Sản phẩm",
+      "buttons": [
+        {
+          "text": "Mua sản phẩm",
+          "event": "goto",
+          "data": "user_information"
+        },
+        {
+          "text": "Xem danh sách sản phẩm",
+          "event": "goto",
+          "data": "list_items"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        },
+        {
+          "property": "item_select",
+          "value": "1",
+          "operator": "="
+        }
+      ],
+      "regex": "(ban|1$)"
+    },
+    {
+      "name": "show_item_2",
+      "ui": "modal",
+      "type": "video",
+      "videoTitle": "show_item_2",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
+      "text": "Desktop Dragon ROG 2020",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime, doloremque Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime, doloremque Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime, doloremque",
+      "thumb": "https://cdn.discordapp.com/attachments/885924454755098629/892416416307871825/38686_razer_barracuda_x__1_.png",
+      "price": 700,
+      "sub_text": "Product detail",
+      "buttons": [
+        {
+          "text": "Buy Item",
+          "event": "goto",
+          "data": "user_information"
+        },
+        {
+          "text": "Show another items",
+          "event": "goto",
+          "data": "list_items"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "en",
+          "operator": "="
+        },
+        {
+          "property": "item_select",
+          "value": "2",
+          "operator": "="
+        }
+      ],
+      "regex": "(^chair|2$)"
+    },
+    {
+      "name": "show_item_2:vi",
+      "ui": "modal",
+      "type": "video",
+      "videoTitle": "show_item_2",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
+      "text": "Desktop Dragon ROG 2020",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime, doloremque, Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime, doloremque, Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime, doloremque",
+      "thumb": "https://cdn.discordapp.com/attachments/885924454755098629/892416416307871825/38686_razer_barracuda_x__1_.png",
+      "price": 700,
+      "sub_text": "Chi tiết sản phẩm",
+      "buttons": [
+        {
+          "text": "Mua sản phẩm",
+          "event": "goto",
+          "data": "user_information"
+        },
+        {
+          "text": "Xem danh sách sản phẩm",
+          "event": "goto",
+          "data": "list_items"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        },
+        {
+          "property": "item_select",
+          "value": "2",
+          "operator": "="
+        }
+      ],
+      "regex": "(ghe|2$)"
+    },
+    {
+      "name": "show_item_3",
+      "ui": "modal",
+      "type": "video",
+      "videoTitle": "show_item_3",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
+      "text": "Desktop Ultimate Phantom 2021",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime,doloremque",
+      "thumb": "https://cdn.discordapp.com/attachments/885924454755098629/892416496419090513/28984_razer_blackwidow_ultimate_2019_green_switch__1_.png",
+      "price": 800,
+      "sub_text": "Detail product",
+      "buttons": [
+        {
+          "text": "Buy Item",
+          "event": "goto",
+          "data": "user_information"
+        },
+        {
+          "text": "Show another items",
+          "event": "goto",
+          "data": "list_items"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "en",
+          "operator": "="
+        },
+        {
+          "property": "item_select",
+          "value": "3",
+          "operator": "="
+        }
+      ],
+      "regex": "(^bed|3$)"
+    },
+    {
+      "name": "show_item_3:vi",
+      "ui": "modal",
+      "type": "video",
+      "videoTitle": "show_item_3",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
+      "text": "Desktop Ultimate Phantom 2021",
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum reprehenderit maxime,doloremque",
+      "thumb": "https://cdn.discordapp.com/attachments/885924454755098629/892416496419090513/28984_razer_blackwidow_ultimate_2019_green_switch__1_.png",
+      "price": 800,
+      "sub_text": "Chi tiết sản phẩm",
+      "buttons": [
+        {
+          "text": "Mua sản phẩm",
+          "event": "goto",
+          "data": "user_information"
+        },
+        {
+          "text": "Xem danh sách sản phẩm",
+          "event": "goto",
+          "data": "list_items"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        },
+        {
+          "property": "item_select",
+          "value": "3",
+          "operator": "="
+        }
+      ],
+      "regex": "(giuong|nem|3$)"
+    },
+    {
+      "name": "buy_item",
+      "ui": "regular",
+      "type": "video",
+      "videoTitle": "buy_item",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
+      "text": "Order Successful",
+      "buttons": [
+        {
+          "text": "Show another items",
+          "event": "goto",
+          "data": "list_items"
+        },
+        {
+          "text": "Stopping Conversation",
+          "event": "goto",
+          "data": "conversation_end"
+        }
+      ],
+      "condition": [
+        {
+          "property": "accessToken",
+          "value": "ID_accessTOKEN",
+          "operator": "="
+        },
+        {
+          "property": "item_select",
+          "value": "item_select:id",
+          "operator": "="
+        }
+      ],
+      "regex": "^buy"
+    },
+    {
+      "name": "buy_item:vi",
+      "ui": "regular",
+      "type": "video",
+      "videoTitle": "buy_item:vi",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
+      "text": "Mua hàng thành công",
+      "buttons": [
+        {
+          "text": "Xem sản phẩm khác",
+          "event": "goto",
+          "data": "list_items"
+        },
+        {
+          "text": "Kết thúc cuộc trò chuyện",
+          "event": "goto",
+          "data": "conversation_end"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        }
+      ],
+      "regex": "mua|thanh toan"
+    },
+    {
+      "name": "not_found",
+      "ui": "regular",
+      "type": "text",
+      "text": "Sorry , we do not understand your request, please search again or click button to continue!",
+      "buttons": [
+        {
+          "text": "Show List Items",
+          "event": "goto",
+          "data": "list_items"
+        },
+        {
+          "text": "Stopping Conversation",
+          "event": "goto",
+          "data": "conversation_end"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "en",
+          "operator": "="
+        }
+      ]
+    },
+    {
+      "name": "not_found:vi",
+      "ui": "regular",
+      "type": "text",
+      "text": "Xin lỗi , chúng tôi không hiểu được yêu cầu của quý khách, vui lòng chọn để tiếp tục",
+      "buttons": [
+        {
+          "text": "Xem Danh Sách Sản Phẩm",
+          "event": "goto",
+          "data": "list_items"
+        },
+        {
+          "text": "Kết thúc cuộc trò chuyện",
+          "event": "goto",
+          "data": "conversation_end"
+        }
+      ],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        }
+      ]
+    },
+    {
+      "name": "conversation_end:vi",
+      "ui": "regular",
+      "type": "text",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
+      "text": "Xin chào và hẹn gặp lại quý khách",
+      "buttons": [],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "vi",
+          "operator": "="
+        }
+      ],
+      "regex": "ket thuc|tam biet"
+    },
+    {
+      "name": "conversation_end",
+      "ui": "regular",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
+      "type": "text",
+      "text": "See you later",
+      "buttons": [],
+      "condition": [
+        {
+          "property": "language_select",
+          "value": "en",
+          "operator": "="
+        }
+      ],
+      "regex": "^(end|goodbye|stop)"
+    },
+    {
+      "name": "video_welcome",
+      "ui": "regular",
+      "type": "video",
+      "videoTitle": "What do you want to create ?",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
+      "buttons": [
+        {
+          "text": "Corporate training videos",
+          "event": "goto",
+          "data": "video_training"
+        },
+        {
+          "text": "Tell me what your name :>",
+          "event": "input",
+          "data": "video_messages"
+        },
+        {
+          "text": "Video chatbots like this one",
+          "event": "goto",
+          "data": "video_training"
+        },
+        {
+          "text": "I want to work at Synthesia",
+          "event": "goto",
+          "data": "video_work"
+        }
+      ],
+      "condition": []
+    },
+    {
+      "name": "video_messages",
+      "ui": "regular",
+      "type": "video",
+      "videoTitle": "Welcome",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
+      "buttons": [
+        {
+          "text": "See example personalized video",
+          "event": "goto",
+          "data": "video_example"
+        },
+        {
+          "text": "Go back",
+          "event": "goto",
+          "data": "video_welcome"
+        }
+      ],
+      "condition": []
+    },
+    {
+      "name": "video_training",
+      "ui": "regular",
+      "type": "video",
+      "videoTitle": "We love personalized video messages !",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
+      "buttons": [
+        {
+          "text": "See an example video",
+          "event": "goto",
+          "data": "video_example"
+        },
+        {
+          "text": "Attend a webinar",
+          "event": "goto",
+          "data": "attend"
+        },
+        {
+          "text": "Go back",
+          "event": "goto",
+          "data": "video_welcome"
+        }
+      ],
+      "condition": [],
+      "regex": ""
+    },
+    {
+      "name": "video_example",
+      "ui": "regular",
+      "type": "video",
+      "videoTitle": "Video Example!",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
+      "buttons": [
+        {
+          "text": "Learn_more",
+          "event": "goto",
+          "data": "learn_more"
+        },
+        {
+          "text": "Attend a webinar",
+          "event": "goto",
+          "data": "attend"
+        },
+        {
+          "text": "Book a demo",
+          "event": "goto",
+          "data": "book_demo"
+        }
+      ],
+      "condition": []
+    },
+    {
+      "name": "learn_more",
+      "ui": "regular",
+      "type": "text",
+      "text": "If you want information .Please contact me !, Thanks",
+      "buttons": [
+        {
+          "text": "Go back",
+          "event": "goto",
+          "data": "conversation_start"
+        }
+      ],
+      "condition": []
+    },
+    {
+      "name": "attend",
+      "ui": "regular",
+      "type": "text",
+      "text": "Attend Here !",
+      "buttons": [
+        {
+          "text": "Go back",
+          "event": "goto",
+          "data": "conversation_start"
+        },
+        {
+          "text": "Capture",
+          "event": "capture",
+          "data": "{\"next\":\"conversation_welcome:vi\",\"key\":\"language_select\",\"value\":\"vi\"}"
+        }
+      ],
+      "condition": []
+    },
+    {
+      "name": "book_demo",
+      "ui": "regular",
+      "type": "text",
+      "text": "Book a Demo!",
+      "buttons": [],
+      "condition": [],
+      "regex": ""
+    },
+    {
+      "name": "video_messages:vi",
+      "ui": "regular",
+      "type": "video",
+      "videoTitle": "Welcome",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
+      "buttons": [
+        {
+          "text": "See example personalized video",
+          "event": "goto",
+          "data": "video_example"
+        },
+        {
+          "text": "Go back",
+          "event": "goto",
+          "data": "video_welcome"
+        }
+      ],
+      "condition": []
+    },
+    {
+      "name": "video_training:vi",
+      "ui": "regular",
+      "type": "video",
+      "videoTitle": "We love personalized video messages !",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632724597/target_transfer_wedmc0.mp4",
+      "buttons": [
+        {
+          "text": "See an example video",
+          "event": "goto",
+          "data": "video_example"
+        },
+        {
+          "text": "Attend a webinar",
+          "event": "goto",
+          "data": "attend"
+        },
+        {
+          "text": "Go back",
+          "event": "goto",
+          "data": "video_welcome"
+        }
+      ],
+      "condition": [],
+      "regex": ""
+    },
+    {
+      "name": "video_example:vi",
+      "ui": "regular",
+      "type": "video",
+      "videoTitle": "Video Example!",
+      "videoUrl": "https://res.cloudinary.com/dcyb0xzun/video/upload/v1632318446/video2_uhp6w9.mp4",
+      "buttons": [
+        {
+          "text": "Learn_more",
+          "event": "goto",
+          "data": "learn_more"
+        },
+        {
+          "text": "Attend a webinar",
+          "event": "goto",
+          "data": "attend"
+        },
+        {
+          "text": "Book a demo",
+          "event": "goto",
+          "data": "book_demo"
+        }
+      ],
+      "condition": []
+    },
+    {
+      "name": "learn_more:vi",
+      "ui": "regular",
+      "type": "text",
+      "text": "If you want information .Please contact me !, Thanks",
+      "buttons": [
+        {
+          "text": "Go back",
+          "event": "goto",
+          "data": "conversation_start"
+        }
+      ],
+      "condition": []
+    },
+    {
+      "name": "attend:vi",
+      "ui": "regular",
+      "type": "text",
+      "text": "Attend Here !",
+      "buttons": [
+        {
+          "text": "Go back",
+          "event": "goto",
+          "data": "conversation_start"
+        },
+        {
+          "text": "Capture",
+          "event": "capture",
+          "data": "{\"next\":\"conversation_welcome:vi\",\"key\":\"language_select\",\"value\":\"vi\"}"
+        }
+      ],
+      "condition": []
+    },
+    {
+      "name": "book_demo:vi",
+      "ui": "regular",
+      "type": "text",
+      "text": "Book a Demo!",
+      "buttons": [],
+      "condition": [],
+      "regex": ""
+    }
+  ]
+}
