@@ -63,11 +63,11 @@ export default {
     toggleChatBox() {
       this.isShow = !this.isShow;
       this.setTimeoutVideoPlayer(0);
-      this.setAutoplay(false);
+      this.setAutoplay(true);
     },
     async handleNextNode(payload) {
       await this.getNode(payload);
-      this.setAutoplay(true);
+      // this.setAutoplay(true);
     },
   },
   mounted() {
