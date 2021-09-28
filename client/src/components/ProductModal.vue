@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="product">
 		<el-dialog
 			title="PRODUCT DETAIL"
 			width="70%"
@@ -80,6 +80,7 @@
 	}
 	.el-dialog__body {
 		padding: 20px;
+		text-align: left;
 	}
 
 	.el-dialog__header {

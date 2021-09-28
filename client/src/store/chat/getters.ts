@@ -19,4 +19,7 @@ export default {
 	productInfo(state: ChatState): Product {
 		return state.productInfo;
 	},
+	productList(state: ChatState): UserState {
+		return state.productList;
+	},
 };

@@ -9,8 +9,7 @@ const resolvers = require('./resolvers/resolvers');
 const cors = require('cors');
 bodyParser = require('body-parser');
 
-
-const port  = process.env.PORT;
+const port = process.env.PORT;
 
 // Connect database
 db.connect();
@@ -21,7 +20,7 @@ const route = require('./routes');
 app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 route(app);
 
 const server = new ApolloServer({
@@ -35,7 +34,6 @@ async function startApolloServer() {
   server.applyMiddleware({ app });
 }
 startApolloServer();
-
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
