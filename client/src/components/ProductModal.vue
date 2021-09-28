@@ -11,16 +11,16 @@
 					<img :src="product.thumb" alt="" style="width:100% ; height: 65vh; object-fit: cover" />
 				</el-col>
 				<el-col :span="12" class="product-item__content">
-					<h1>{{ product.videoTitle }}</h1>
-					<p class="product-item__price">Price : {{ product.price }}$</p>
+					<h1>{{ product.text }}</h1>
+					<p class="product-item__price">Price : {{ product.price }}</p>
 					<p>
-						{{ product.text }}
+						{{ product.description }}
 					</p>
 				</el-col>
 			</el-row>
 			<span slot="footer" class="dialog-footer">
-				<el-button @click="dialogVisible = false">Cancel</el-button>
-				<el-button type="primary" @click="dialogVisible = false">Buy</el-button>
+				<el-button @click="handleNextNode(product.buttons[0])">{{product.buttons[0].text}}</el-button>
+				<el-button type="primary" @click="dialogVisible = false">{{product.buttons[1].text}}</el-button>
 			</span>
 		</el-dialog>
 	</div>
@@ -37,6 +37,7 @@
 		},
 		computed: {
 			...mapGetters({
+        node: 'chat/node',
 				product: 'chat/productInfo',
 			}),
 		},
@@ -57,6 +58,11 @@
 			handleOpen() {
 				this.dialogVisible = true;
 			},
+      handleNextNode(payload){
+        // this.dialogVisible = true;
+        // console.log(payload.data,payload.event);
+        this.$store.dispatch('chat/getNode', payload);
+      },
 		},
 	};
 </script>

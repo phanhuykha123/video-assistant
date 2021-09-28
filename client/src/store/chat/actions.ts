@@ -1,5 +1,5 @@
 // import { CaptureData } from './actions';
-import { createNewUser, getNode } from '@/api/chat';
+import { createNewUser, getNode, orderItem } from '@/api/chat';
 import { Commit, Dispatch, Getter } from 'vuex';
 
 export interface InputNode {
@@ -21,8 +21,20 @@ export interface InputField {
 }
 
 export default {
+	async orderItem({commit, getters}: { commit: Commit; getters: any }, payload: any):Promise<void> {
+		const res = await orderItem({
+			name:"Kha",
+			address:payload.address,
+			phone: payload.phone,
+		})
+		if (res.status === 200) {
+			commit('SET_NODE', { ...res.data, nodeId: `id${new Date().getTime().toString()}` });
+			commit('SET_TIME_OUT', 1000);
+			commit('SET_LOADING', false);
+		}
+	},
 	async getNode(
-		{ commit, getters }: { commit: Commit; getters: any },
+		{ commit, getters, dispatch }: { commit: Commit; getters: any; dispatch: Dispatch },
 		payload: any,
 	): Promise<void> {
 		if (payload.data.key === 'language_select') {
@@ -35,6 +47,7 @@ export default {
 		});
 
 		if (res.status === 200) {
+
 			if (res.data.data.ui === 'modal') {
 				commit('SET_PRODUCT', res.data.data);
 			} else {

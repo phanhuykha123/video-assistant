@@ -8,6 +8,15 @@ export function getNode(data: any) {
     data,
   });
 }
+
+export function orderItem(data: any) {
+  return request({
+    url: '/order',
+    method: 'POST',
+    data,
+  });
+}
+
 export function createNewUser(data: any) {
   return request({
     url: '/user',

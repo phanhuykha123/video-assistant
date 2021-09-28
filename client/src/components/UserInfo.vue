@@ -18,7 +18,7 @@
       </el-col>
 
       <el-col :span="24">
-        <el-button type="primary" style="width: 100%">
+        <el-button type="primary" style="width: 100%" @click="order">
           Submit
         </el-button>
       </el-col>
@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import {mapActions, mapMutations} from "vuex";
+
 export default {
   data() {
     return {
@@ -36,6 +38,19 @@ export default {
       },
     };
   },
+  methods:{
+    ...mapActions({
+      orderItem: 'chat/orderItem',
+    }),
+    ...mapMutations({
+      setAutoplay: 'chat/SET_AUTO_PLAY',
+    }),
+    async order() {
+      console.log('data', this.formData);
+      await this.orderItem(this.formData);
+      this.setAutoplay(true);
+    }
+  }
 };
 </script>
 
