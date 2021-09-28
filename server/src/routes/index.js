@@ -61,10 +61,10 @@ app.post('/order',async (req, res) => {
         await orderInformation.save();
 
         //Get Node conversation_end
-        const stateUser = await state.findOne({userId: name});
+        const user = await User.findOne({name: name});
         const data = await Content.findById(process.env.ID);
         data.content.find(node => {
-            const nameNextNode = stateUser.language === 'en' ? 'conversation_end' : 'conversation_end:vi';
+            const nameNextNode = user.language === 'en' ? 'conversation_end' : 'conversation_end:vi';
             if(node.name === nameNextNode){
                 res.status(200).json({
                     status: 'message',

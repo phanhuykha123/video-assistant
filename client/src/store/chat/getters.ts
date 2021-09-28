@@ -1,4 +1,4 @@
-import { ChatState, Node, UserState } from '@/interfaces/chatState.interface';
+import {ChatState, Node, Product, UserState} from '@/interfaces/chatState.interface';
 
 export default {
 	node(state: ChatState): Node {
@@ -16,7 +16,7 @@ export default {
 	userState(state: ChatState): UserState {
 		return state.userState;
 	},
-	productInfo(state: ChatState): UserState {
+	productInfo(state: ChatState): Product {
 		return state.productInfo;
 	},
 	productList(state: ChatState): UserState {

@@ -38,8 +38,3 @@ startApolloServer();
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
-//on su kien tu webhook
-// emit su kien len admin
-
-//on su kien tu admin emit
-// goi lai web hook de hien thi ra text

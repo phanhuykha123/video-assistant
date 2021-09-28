@@ -26,3 +26,10 @@ export interface UserState {
 	name: string;
 	language: string;
 }
+
+export interface Product {
+	text: string,
+	description: string,
+	thumb: string,
+	price: string,
+}
