@@ -60,7 +60,6 @@ const typeDefs = gql`
     data: String
     thumb: String,
     price: String,
-    sub_text: String,
     description : String
   }
 

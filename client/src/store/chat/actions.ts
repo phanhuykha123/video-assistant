@@ -41,13 +41,16 @@ export default {
     });
 
     if (res.status === 200) {
-      if (res.data.data.ui === 'modal') {
+      if (res.data.data.name === 'conversation_start') {
+        commit('SET_NODE', { ...res.data, nodeId: `id${new Date().getTime().toString()}` });
+      } else if (res.data.data.ui === 'modal') {
         commit('SET_PRODUCT', res.data.data);
       } else if (res.data.data.ui === 'carousel') {
         commit('SET_LIST_PRODUCTS', res.data.data);
       } else {
-        commit('SET_NODE', { ...res.data, nodeId: `id${new Date().getTime().toString()}` });
+        commit('SET_NEXT_NODE', { ...res.data, nodeId: `id${new Date().getTime().toString()}` });
       }
+
       commit('SET_TIME_OUT', 1000);
       commit('SET_LOADING', false);
     }

@@ -26,6 +26,22 @@
       </el-col>
     </el-row>
 
+    <el-row>
+      <el-col :span="24">
+        <el-form-item label="UI Type">
+          <el-select v-model="formData.ui" placeholder="Select">
+            <el-option
+              v-for="item in uiTypes"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            >
+            </el-option>
+          </el-select>
+        </el-form-item>
+      </el-col>
+    </el-row>
+
     <el-row :gutter="10">
       <el-col :span="24">
         <el-form-item label="Chat Name" prop="name">
@@ -268,6 +284,14 @@ export default defineComponent({
       { label: 'Text', value: 'text' }
     ];
 
+    const uiTypes = [
+      { label: 'Form', value: 'form' },
+      { label: 'Regular', value: 'regular' },
+      { label: 'Carousel', value: 'carousel' },
+      { label: 'Modal', value: 'modal' },
+      { label: 'Input', value: 'input' }
+    ];
+
     const editNode = computed(() => store.getters['chatbot/getEditNode']);
 
     const formData: any =
@@ -282,7 +306,8 @@ export default defineComponent({
         thumb: '',
         videoTitle: '',
         videoUrl: '',
-        type: 'text'
+        type: 'text',
+        ui: ''
       });
 
     const buttonEvents = [
@@ -401,6 +426,7 @@ export default defineComponent({
       nodeDatas,
       types,
       editNode,
+      uiTypes,
       // Methods
       addButton,
       addConditions,

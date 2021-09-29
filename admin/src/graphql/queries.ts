@@ -9,6 +9,7 @@ export const getAll = gql`
         text
         thumb
         price
+        ui
         type
         videoUrl
         videoTitle
