@@ -11,7 +11,6 @@ const ButtonSchema = new mongoose.Schema({
     data:{
         type:String,
     },
-    name: String,
     thumb: String,
     price: String,
     sub_text: String,

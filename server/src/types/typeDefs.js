@@ -6,22 +6,29 @@ const typeDefs = gql`
   }
 
   type Node {
-    name: String
-    text: String
-    thumb: String
-    price: String
-    buttons: [Button]
-    condition:[Condition]
-    regex: String
-    type: String
-    videoUrl: String
-    videoTitle: String
+    name: String,
+    ui: String,
+    type: String,
+    videoTitle:String,
+    videoUrl:String,
+    text: String,
+    description: String,
+    thumb: String,
+    price: String,
+    sub_text: String,
+    buttons: [Button],
+    condition:[Condition],
+    regex: String,
   }
 
   type Button {
     text: String
     event: String
     data: String
+    thumb: String,
+    price: String,
+    sub_text: String,
+    description : String
   }
 
   type Condition {
@@ -50,8 +57,11 @@ const typeDefs = gql`
   input ButtonInput {
     text: String
     event: String
-    thumb: String
     data: String
+    thumb: String,
+    price: String,
+    sub_text: String,
+    description : String
   }
 
   input ConditionInput {
@@ -61,17 +71,19 @@ const typeDefs = gql`
   }
 
   input NodeInput {
-    name: String
-    ui: String
-    text: String
-    thumb: String
-    price: String
-    buttons: [ButtonInput]
-    condition:[ConditionInput]
-    regex: String
-    type: String
-    videoUrl: String
-    videoTitle: String
+    name: String,
+    ui: String,
+    type: String,
+    videoTitle:String,
+    videoUrl:String,
+    text: String,
+    description: String,
+    thumb: String,
+    price: String,
+    sub_text: String,
+    buttons: [ButtonInput],
+    condition:[ConditionInput],
+    regex: String,
   }
 
   input CurrentNode {
