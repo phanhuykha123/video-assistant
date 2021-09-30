@@ -11,6 +11,7 @@ export const createNodeQuery = gql`
         type
         videoUrl
         videoTitle
+        ui
         buttons {
           text
           event
@@ -38,6 +39,8 @@ export const deleteNodeQuery = gql`
         type
         videoUrl
         videoTitle
+        ui
+        regex
         buttons {
           text
           event
@@ -61,6 +64,7 @@ export const updateNodeQuery = gql`
         text
         thumb
         price
+        ui
         type
         videoUrl
         videoTitle
