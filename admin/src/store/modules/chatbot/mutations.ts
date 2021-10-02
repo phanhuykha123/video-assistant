@@ -1,7 +1,6 @@
 export default {
   SET_CHATBOT_DATA(state: any, payload: any) {
     const clonePayload = JSON.parse(JSON.stringify(payload));
-
     clonePayload.map((node: any) => {
       node.buttons.forEach((button: any) => {
         if (button.event === 'capture') {
@@ -13,8 +12,9 @@ export default {
         }
       });
     });
-
     state.chatbotData = clonePayload;
+
+    console.log(payload);
   },
   SET_EDIT_NODE(state: any, payload: any) {
     state.editNode = state.chatbotData.find((node: any) => node.name === payload);

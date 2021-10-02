@@ -52,6 +52,7 @@ const resolvers = {
 
     deleteContent: async (parent, { idContent, name }, context, info) => {
       const record = await Content.findOne({ idContent });
+      // console.log(idContent, name);
       const updatedContent = record.content.filter((item) => item.name !== name);
       await Content.updateMany({ id: idContent }, { content: updatedContent });
       return {content: updatedContent};

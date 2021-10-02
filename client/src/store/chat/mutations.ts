@@ -4,6 +4,9 @@ export default {
   SET_NODE(state: ChatState, payload: Node): void {
     state.node = payload;
   },
+  SET_NEXT_NODE(state: ChatState, payload: Node): void {
+    state.nextNode = payload;
+  },
   SET_TIME_OUT(state: ChatState, payload: number): void {
     state.timeout = payload;
   },
